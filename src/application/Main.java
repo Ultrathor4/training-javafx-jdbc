@@ -9,24 +9,28 @@ import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
+	private static Scene mainScene;
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/MainView.fxml"));
 			ScrollPane scrollPane = loader.load();
-			
+
 			scrollPane.setFitToHeight(true);
 			scrollPane.setFitToWidth(true);
-			
-			Scene mainScene = new Scene(scrollPane);
+
+			mainScene = new Scene(scrollPane);
 			primaryStage.setScene(mainScene);
 			primaryStage.setTitle("Sample JavaFX application");
 			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println("java version: "+System.getProperty("java.version"));
-		System.out.println("javafx.version: " + System.getProperty("javafx.version"));
+	}
+
+	public static Scene getMainScene() {
+		return mainScene;
 	}
 }
